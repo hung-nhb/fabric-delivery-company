@@ -2,7 +2,7 @@
 class App
 {
     protected $controller = "OrderController";
-    protected $action = "OrderPage";
+    protected $action = "CreateOrder";
     protected $params = [];
 
     function __construct()
