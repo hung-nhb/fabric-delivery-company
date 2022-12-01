@@ -18,8 +18,8 @@ $DOMAIN = 'http://localhost:3000';
     </div>
     <div class="content">
         <div class="navbar">
-            <div class="btn from-left" onclick="location.pathname='/OrderController/CreateOrder'">Create New Order</div>
-            <div class="btn from-left" onclick="location.pathname='/OrderController/AllOrders'">All Orders</div>
+            <div class="btn from-left" onclick="location.pathname='/OrderController/CreateOrder/'">Create New Order</div>
+            <div class="btn from-left" onclick="location.pathname='/OrderController/AllOrders/'">All Orders</div>
         </div>
         <div class="view">
             <?php require_once $data["render"] . '.php' ?>

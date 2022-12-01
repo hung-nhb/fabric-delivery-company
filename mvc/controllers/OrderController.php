@@ -17,9 +17,12 @@ class OrderController extends Controller
 
     function AllOrders()
     {
-        $orders = $this->model->get_orders_by_user('CT0001');
+        $this->data["orderList"] = [];
+        if (isset($_GET["id"])) {
+            $orders = $this->model->get_orders_by_user($_GET["id"]);
+            $this->data["orderList"] = $orders;
+        }
         $this->data["render"] = "AllOrdersView";
-        $this->data["orderList"] = $orders;
         $this->view("Layout", $this->data);
     }
 }
