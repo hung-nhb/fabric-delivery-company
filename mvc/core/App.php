@@ -1,8 +1,8 @@
 <?php
 class App
 {
-    protected $controller = "OrderController";
-    protected $action = "CreateOrder";
+    protected $controller = "UserController";
+    protected $action = "Login";
     protected $params = [];
 
     function __construct()

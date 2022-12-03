@@ -42,4 +42,14 @@ class Database
         }
         return $data;
     }
+
+    function get_one($sql = '')
+    {
+        $result = $this->query($sql);
+        $data = '';
+        if ($result) {
+            $data = mysqli_fetch_assoc($result);
+        }
+        return $data;
+    }
 }
