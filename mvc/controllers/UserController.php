@@ -18,7 +18,7 @@ class UserController extends Controller
                 if ($user["Type"] == "Customer") {
                     header("Location: http://localhost:3000/OrderController/CreateOrder/?id=" . $id["UID"]);
                 } else {
-                    header("Location: http://localhost:3000/SalerController/ABC/?id=" . $id["UID"]);
+                    header("Location: http://localhost:3000/SalerController/Analyze/?id=" . $id["UID"]);
                 }
             } else {
                 header("Location: http://localhost:3000/UserController/Login");

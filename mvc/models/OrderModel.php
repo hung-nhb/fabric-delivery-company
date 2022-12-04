@@ -38,4 +38,10 @@ class OrderModel extends Database
         $data = $this->get_one($sql);
         return $data["First and Middle Name"] . " " . $data["Name"];
     }
+
+    function get_order ($order) {
+        $sql = "SELECT * FROM  order WHERE OID = '$order'";
+        $data = $this->get_list($sql);
+        return $data;
+    }
 }

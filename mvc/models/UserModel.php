@@ -14,9 +14,5 @@ class UserModel extends Database
         return $data;
     }
 
-    function get_order ($order) {
-        $sql = "SELECT * FROM  order WHERE OID = '$order'";
-        $data = $this->get_list($sql);
-        return $data;
-    }
+    
 }
