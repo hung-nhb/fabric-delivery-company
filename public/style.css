@@ -28,14 +28,14 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .content {
     position: relative;
     top: 6rem;
-    /* height: calc(100vh - 6rem); */
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 5fr;
     column-gap: 2rem;
 }
 
@@ -46,8 +46,7 @@ code {
 
 .btn {
     position: relative;
-    padding: 1.4rem 4.2rem;
-    padding-right: 3.1rem;
+    padding: 1.4rem 2rem;
     font-size: 1rem;
     color: black;
     transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
@@ -106,10 +105,35 @@ code {
     flex-direction: column;
     justify-content: center;
     box-shadow: 0 1px 2px rgb(0 0 0 / 10%), 0 4px 8px rgb(0 0 0 / 10%);
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
 }
 
-.caption-all-orders {
+/* CSS for Customer Page */
+
+.product-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.product-item {
+    background-color: #DFDFDF;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.product-info {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1rem;
+}
+
+.product-image {
+    width: 5rem;
+    border-radius: 1rem;
+}
+
+.product-title {
     font-weight: bold;
     margin: 1rem 0;
 }
@@ -124,3 +148,45 @@ code {
     font-weight: bold;
     margin: 1rem 0;
 }
+
+
+.product-number-title {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.product-number {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-quantity {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    width: 4rem;
+    height: 2rem;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.product-available {
+    display: flex;
+    justify-content: center;
+}
+
+.button-create-order {
+    margin-top: 1rem;
+    height: 2rem;
+    width: 30%;
+}
+
+
+/* CSS for Saler Page */

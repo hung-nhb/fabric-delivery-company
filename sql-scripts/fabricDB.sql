@@ -1,5 +1,8 @@
-CREATE SCHEMA Fabric_Delivery_Company;
-USE Fabric_Delivery_Company;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS; 
+SET FOREIGN_KEY_CHECKS=0;
+DROP SCHEMA IF EXISTS fabric_delivery_company;
+CREATE SCHEMA fabric_delivery_company;
+USE fabric_delivery_company;
 
 -- Mapping of strong entities
 CREATE TABLE `User`(
@@ -104,40 +107,40 @@ CREATE TABLE Product(
 
 ALTER TABLE Product AUTO_INCREMENT = 200001;
 
-CREATE TABLE Delivery_unit(
+CREATE TABLE Delivery_Unit(
 	DuID int AUTO_INCREMENT,
     PRIMARY KEY(DuID)
 );
 
-ALTER TABLE Delivery_unit AUTO_INCREMENT = 300001;
+ALTER TABLE Delivery_Unit AUTO_INCREMENT = 300001;
 
-CREATE TABLE Company_Delivery_unit(
+CREATE TABLE Company_Delivery_Unit(
 	CDuID int AUTO_INCREMENT,
     DuID int,
     PRIMARY KEY(CDuID), 
-    FOREIGN KEY(DuID) references Delivery_unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(DuID) references Delivery_Unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-ALTER TABLE Company_Delivery_unit AUTO_INCREMENT = 400001;
+ALTER TABLE Company_Delivery_Unit AUTO_INCREMENT = 400001;
 
-CREATE TABLE Outside_Delivery_unit(
+CREATE TABLE Outside_Delivery_Unit(
 	ODuID int AUTO_INCREMENT,
     `Name` varchar(30),
     Driver_Name varchar(30),
     License_plate char(10),
     DuID int,
     PRIMARY KEY(ODuID),
-    FOREIGN KEY(DuID) references Delivery_unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(DuID) references Delivery_Unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-ALTER TABLE Outside_Delivery_unit AUTO_INCREMENT = 500001;
+ALTER TABLE Outside_Delivery_Unit AUTO_INCREMENT = 500001;
 
 CREATE TABLE Vehicle(
 	License_plate char(10),
     PRIMARY KEY(License_plate)
 );
 
-CREATE TABLE Delivery_trip(
+CREATE TABLE Delivery_Trip(
 	DtID int AUTO_INCREMENT,
     `Date` date,
     Current_location varchar(50),
@@ -145,9 +148,9 @@ CREATE TABLE Delivery_trip(
     PRIMARY KEY(DtID)
 );
 
-ALTER TABLE Delivery_trip AUTO_INCREMENT = 600001;
+ALTER TABLE Delivery_Trip AUTO_INCREMENT = 600001;
 
-CREATE TABLE Sales_time(
+CREATE TABLE Sales_Time(
 	StID int AUTO_INCREMENT,
     Price int CHECK(Price > 0),
     VAT float DEFAULT 0.08,
@@ -155,7 +158,7 @@ CREATE TABLE Sales_time(
 	PRIMARY KEY(StID)
 );
 
-ALTER TABLE Sales_time AUTO_INCREMENT = 700001;
+ALTER TABLE Sales_Time AUTO_INCREMENT = 700001;
 
 CREATE TABLE Receipt(
 	RID int AUTO_INCREMENT,
@@ -190,22 +193,22 @@ ALTER TABLE `User` ADD (Username varchar(30) not null);
 ALTER TABLE `User` ADD FOREIGN KEY(Username) references `Account`(Username) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE Customer ADD (`Type` varchar(20));
-ALTER TABLE Customer ADD FOREIGN KEY(`Type`) references Customer_type(`Type`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Customer ADD FOREIGN KEY(`Type`) references Customer_Type(`Type`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE Employee ADD (`MID` char(6));
 ALTER TABLE Employee ADD FOREIGN KEY(`MID`) references Manager(`MID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE Vehicle ADD (CDuID int not null);
-ALTER TABLE Vehicle ADD FOREIGN KEY(CDuID) references Company_Delivery_unit(CDuID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Vehicle ADD FOREIGN KEY(CDuID) references Company_Delivery_Unit(CDuID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE Driver ADD (CDuID int);
-ALTER TABLE Driver ADD FOREIGN KEY(CDuID) references Company_Delivery_unit(CDuID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Driver ADD FOREIGN KEY(CDuID) references Company_Delivery_Unit(CDuID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE Delivery_unit ADD (WsID char(6));
-ALTER TABLE Delivery_unit ADD FOREIGN KEY(WsID) references Warehouse_staff(WsID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Delivery_Unit ADD (WsID char(6));
+ALTER TABLE Delivery_Unit ADD FOREIGN KEY(WsID) references Warehouse_Staff(WsID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE Delivery_trip ADD (DuID int);
-ALTER TABLE Delivery_trip ADD FOREIGN KEY(DuID) references Delivery_unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Delivery_Trip ADD (DuID int);
+ALTER TABLE Delivery_Trip ADD FOREIGN KEY(DuID) references Delivery_Unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- Mapping of N:M or 3 - ary relationship (relationship relation approach)
 CREATE TABLE Contain(
@@ -215,7 +218,7 @@ CREATE TABLE Contain(
     Meters float,
     PRIMARY KEY(OID, PID),
     FOREIGN KEY(OID) references `Order`(OID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(PID)references Product(PID) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(PID) references Product(PID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Has_Package(
@@ -223,7 +226,7 @@ CREATE TABLE Has_Package(
     PaID int,
     OID int,
     PRIMARY KEY(DtID, PaID, OID),
-    FOREIGN KEY(DtID)references Delivery_trip(DtID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(DtID) references Delivery_Trip(DtID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(PaID, OID)references Package(PaID, OID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -233,7 +236,7 @@ CREATE TABLE Sale(
     SID char(6),
     Unique(StID, SID), 
     PRIMARY KEY(StID, OID),
-    FOREIGN KEY(StID)references Sales_time(StID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(StID)references Sales_Time(StID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(OID)references `Order`(OID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(SID)references Saler(SID) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -279,7 +282,7 @@ CREATE TABLE Pay_Bill(
     Unique(BID, AID),
     PRIMARY KEY(BID, DuID),
     FOREIGN KEY(BID)references Bill(BID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (DuID)references Delivery_unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (DuID)references Delivery_Unit(DuID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (AID)references Accountant(AID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -294,8 +297,7 @@ CREATE TABLE Address(
 	DtID int,
     Address varchar(30),
     PRIMARY KEY(DtID, Address),
-    FOREIGN KEY(DtID)references Delivery_trip(DtID) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(DtID)references Delivery_Trip(DtID) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 
