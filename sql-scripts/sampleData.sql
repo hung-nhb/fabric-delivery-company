@@ -265,15 +265,15 @@ INSERT INTO Driver
 VALUES ('EM0004', NULL);
 INSERT INTO Driver
 VALUES ('EM0028', NULL);
-INSERT INTO Warehouse_staff
+INSERT INTO Warehouse_Staff
 VALUES ('EM0005');
-INSERT INTO Warehouse_staff
+INSERT INTO Warehouse_Staff
 VALUES ('EM0008');
-INSERT INTO Warehouse_staff
+INSERT INTO Warehouse_Staff
 VALUES ('EM0009');
-INSERT INTO Warehouse_staff
+INSERT INTO Warehouse_Staff
 VALUES ('EM0010');
-INSERT INTO Warehouse_staff
+INSERT INTO Warehouse_Staff
 VALUES ('EM0027');
 INSERT INTO Worker
 VALUES ('EM0006');
@@ -302,10 +302,10 @@ VALUES ('Kate', 'Normal' ,'Red', NULL, 'In urgent demand', 'XYZ', 10000), ('Caro
 NULL, 'Made in China', 'ABC', 35000), ('Caro', 'Good' ,'Grey', NULL, 'Made in Vietnam', 'ABC', 95000), ('Cotton','Good' ,'Pink', NULL, 'In urgent demand', 'XYZ', 50000),
 ('Cotton', 'Normal' ,'Red', NULL, 'Imported from Canada', 'KLM', 9000);
 
-INSERT INTO Delivery_unit (WsID)
+INSERT INTO Delivery_Unit (WsID)
 VALUES ('EM0005'), ('EM0008'), ('EM0009'), ('EM0010'), ('EM0027');
 
-INSERT INTO Company_delivery_unit (DuID)
+INSERT INTO Company_Delivery_Unit (DuID)
 VALUES ('300001'), ('300002'), ('300005');
 
 UPDATE Driver
@@ -316,7 +316,7 @@ UPDATE Driver
 SET CDuID = '400003'
 WHERE DID = 'EM0028';
 
-INSERT INTO Outside_delivery_unit (Name, Driver_name, License_plate, DuID)
+INSERT INTO Outside_Delivery_Unit (Name, Driver_name, License_plate, DuID)
 VALUES ('A company', 'Tran Duc Tien', '70C-159.24','300003'), ('B company', 'Nguyen Duc Dung', '60B-919.45','300004');
 
 INSERT INTO Vehicle
@@ -330,11 +330,11 @@ VALUES ('85F-193.60', '400003');
 INSERT INTO Vehicle
 VALUES ('12F-125.97', '400003');
 
-INSERT INTO Delivery_trip (Date, Current_Location, Status, DuID)
+INSERT INTO Delivery_Trip (Date, Current_Location, Status, DuID)
 VALUES ('2022-08-15', 'Binh Duong', 'Not dispatched', '300001'), ('2022-09-08', 'Q1, TP.HCM', 'Dispatched', '300004'), ('2022-10-05', 'Binh Thanh, TP.HCM', 
 'Dispatched', '300002'), ('2022-10-20', 'Dong Nai', 'Done', '300003');
 
-INSERT INTO Sales_time (Price, Sale_date)
+INSERT INTO Sales_Time (Price, Sale_date)
 VALUES (2650, '2022-07-13'), (1720, '2022-08-05'), (410, '2022-09-03'), (10070, '2022-10-18'), (620, '2022-07-23'),
 (310, '2022-08-25'), (1790, '2022-10-14'), (1500, '2022-11-11');
 
@@ -393,46 +393,46 @@ VALUES ('700001', '100001'), ('700002', '100002'), ('700003', '100004'), ('70000
 UPDATE Sale
 SET SID = (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1);
 
-INSERT INTO Make_order 
+INSERT INTO Make_Order 
 VALUES ('100001', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1), 'CT0001'), 
 ('100002',(SELECT SID FROM Saler ORDER BY RAND() LIMIT 1), 'CT0005'), ('100003',(SELECT SID FROM Saler ORDER BY RAND() LIMIT 1) ,'CT0002'), 
 ('100004', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1),'CT0003'), ('100005', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1),'CT0004'),
 ('100006', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1),'CT0002'), ('100007', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1),'CT0003'), 
 ('100008', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1),'CT0002'), ('100009', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1),'CT0005');
 
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110001','100001','200001',1,15);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110001','100001','200002',3,0);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110006','100001','200001',1,15);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110006','100001','200002',0,1000);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110002','100002','200005',3,100);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110002','100002','200006',3,250);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110005','100002','200005',1,200);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110005','100002','200006',5,250);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110004','100003','200004',1,200);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110003','100004','200003',3,2000);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110007','100004','200003',4,3000);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110008','100005','200001',3,500);
-INSERT INTO Has_product
+INSERT INTO Has_Product
 VALUES ('110008','100005','200006',2,300);
 
-INSERT INTO Do_receipt
+INSERT INTO Do_Receipt
 VALUES ('800001', '100004', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)), ('800002', '100003', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)),
  ('800003', '100002', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)), ('800004', '100001', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)) ;
 
 
-INSERT INTO Pay_bill 
+INSERT INTO Pay_Bill 
 VALUES ('900001', '300004', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)), ('900002', '300003', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)),
  ('900003', '300002', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1)), ('900004', '300001', (SELECT AID FROM Accountant ORDER BY RAND() LIMIT 1));
 
@@ -462,9 +462,6 @@ INSERT INTO Address
 VALUES ('600003', 'Q11, TP.HCM');
 INSERT INTO Address
 VALUES ('600004', 'Dong Nai');
-
-
-
 
 
 
