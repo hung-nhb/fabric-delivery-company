@@ -298,9 +298,9 @@ VALUES ('2022-07-11', 'Waiting', 'Wait at least 1 day to confirm order'), ('2022
 ('2022-08-22', 'Done', 'Delay by one day'), ('2022-10-12', 'Waiting', NULL), ('2022-11-07', 'Processing', NULL);
 
 INSERT INTO Product(Name, Type, Color, Image, Detail, Supplier, Inventory_on_hand)
-VALUES ('Kate', 'Normal' ,'Red', NULL, 'In urgent demand', 'XYZ', 10000), ('Caro', 'Good' ,'Yellow', NULL, 'Imported from USA', 'KLM', 5000), ('Kate', 'Normal' ,'Pink', 
-NULL, 'Made in China', 'ABC', 35000), ('Caro', 'Good' ,'Grey', NULL, 'Made in Vietnam', 'ABC', 95000), ('Cotton','Good' ,'Pink', NULL, 'In urgent demand', 'XYZ', 50000),
-('Cotton', 'Normal' ,'Red', NULL, 'Imported from Canada', 'KLM', 9000);
+VALUES ('Kate', 'Normal' ,'Red', 'red kate silk', 'In urgent demand', 'XYZ', 10000), ('Caro', 'Good' ,'Yellow', 'yellow caro silk', 'Imported from USA', 'KLM', 5000),
+ ('Kate', 'Normal' ,'Pink', 'pink kate silk', 'Made in China', 'ABC', 35000), ('Caro', 'Good' ,'Grey', 'grey caro silk', 'Made in Vietnam', 'ABC', 95000),
+ ('Cotton','Good' ,'Pink', 'pink cotton silk', 'In urgent demand', 'XYZ', 50000), ('Cotton', 'Normal' ,'Red', 'red cotton silk', 'Imported from Canada', 'KLM', 9000);
 
 INSERT INTO Delivery_Unit (WsID)
 VALUES ('EM0005'), ('EM0008'), ('EM0009'), ('EM0010'), ('EM0027');
