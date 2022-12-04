@@ -113,3 +113,14 @@ code {
     font-weight: bold;
     margin: 1rem 0;
 }
+
+.order-view:hover {
+    text-decoration: underline;
+    color: blue;
+    transition-delay: .1s;
+}
+
+.caption-view-order {
+    font-weight: bold;
+    margin: 1rem 0;
+}

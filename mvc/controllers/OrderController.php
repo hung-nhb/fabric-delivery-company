@@ -25,4 +25,14 @@ class OrderController extends Controller
         $this->data["render"] = "AllOrdersView";
         $this->view("Layout", $this->data);
     }
+
+    function ViewOrder()
+    {
+        $this->data["productList"] = [];
+        if (isset($_GET["id"])) {
+            $this->data["productList"] = $this->model->get_products_of_order($_GET["id"]);
+        }
+        $this->data["render"] = "ViewOrder";
+        $this->view("Layout", $this->data);
+    }
 }

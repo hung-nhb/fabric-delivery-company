@@ -7,4 +7,11 @@ class OrderModel extends Database
         $data = $this->get_list($sql);
         return $data;
     }
+
+    function get_products_of_order($order_id)
+    {
+        $sql = "call show_detail_order($order_id)";
+        $data = $this->get_list($sql);
+        return $data;
+    }
 }
