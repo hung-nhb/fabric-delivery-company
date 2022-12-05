@@ -13,13 +13,15 @@
     </tr>
     <?php if ($data["orderList"]) {
         foreach ($data["orderList"] as $key => $value) { ?>
-            <tr>
-                <td align="center"><?php echo $value["OID"] ?></td>
-                <td align="center"><?php echo $value["First and Middle Name"] . " " . $value["Name"] ?></td>
-                <td align="center"><?php echo $value["Date"] ?></td>
-                <td align="center"><?php echo $value["Status"] ?></td>
-                <td><?php echo $value["Note"] ?></td>
-            </tr>
+    <tr>
+        <td align="center" class="order-view"
+            onclick="location.pathname='<?php echo '/OrderController/ViewOrder/?id='. $value["OID"]?>' ">
+            <?php echo $value["OID"] ?></td>
+        <td align="center"><?php echo $value["First and Middle Name"] . " " . $value["Name"] ?></td>
+        <td align="center"><?php echo $value["Date"] ?></td>
+        <td align="center"><?php echo $value["Status"] ?></td>
+        <td><?php echo $value["Note"] ?></td>
+    </tr>
     <?php }
     } ?>
 </table>

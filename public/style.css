@@ -135,7 +135,20 @@ code {
 
 .product-title {
     font-weight: bold;
+    margin: 1rem 0;
 }
+
+.order-view:hover {
+    text-decoration: underline;
+    color: blue;
+    transition-delay: .1s;
+}
+
+.caption-view-order {
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
 
 .product-number-title {
     display: flex;
@@ -174,5 +187,6 @@ input[type=number]::-webkit-outer-spin-button {
     height: 2rem;
     width: 30%;
 }
+
 
 /* CSS for Saler Page */

@@ -8,6 +8,12 @@ class OrderModel extends Database
         return $data;
     }
 
+    function get_products_of_order($order_id)
+    {
+        $sql = "call show_detail_order($order_id)";
+        $data = $this->get_list($sql);
+        return $data;
+    }
     function create_order($id, $order)
     {
         $sql = "SELECT MAX(`OID`) FROM `Order`";
@@ -31,5 +37,16 @@ class OrderModel extends Database
         $sql = "SELECT * FROM user WHERE UID = '$user_id'";
         $data = $this->get_one($sql);
         return $data["First and Middle Name"] . " " . $data["Name"];
+    }
+
+    function get_order ($order) {
+        $sql = "SELECT * FROM  order WHERE OID = '$order'";
+        $data = $this->get_list($sql);
+        return $data;
+    }
+    function get_total($date, $pid) {
+        $sql = "call show_total_meters_of_product_in_day($date, $pid)";
+        $data = $this->get_list($sql);
+        return $data;
     }
 }

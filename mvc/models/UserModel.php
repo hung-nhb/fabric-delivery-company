@@ -13,4 +13,6 @@ class UserModel extends Database
         $data = $this->get_one($sql);
         return $data;
     }
+
+    
 }
