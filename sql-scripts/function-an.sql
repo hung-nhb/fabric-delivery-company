@@ -28,6 +28,20 @@ BEGIN
  END$$
 DELIMITER ;
 
+
+DELIMITER $$
+DROP FUNCTION IF EXISTS countTotalOrder;
+
+CREATE FUNCTION countTotalOrder (CustomerID char(6)) 
+RETURNS int
+DETERMINISTIC
+BEGIN
+    DECLARE totalOrder int DEFAULT 0;
+    SELECT COUNT(*) into totalOrder FROM `Make_Order` WHERE `Make_Order`.CID = CustomerID;
+    RETURN totalOrder;
+END $$
+DELIMITER ;
+
 DROP FUNCTION IF EXISTS confirmOrder;
 
 DELIMITER $$
