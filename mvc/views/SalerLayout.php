@@ -14,7 +14,7 @@ $DOMAIN = 'http://localhost:3000';
 
 <body>
     <div class="header">
-        <?php if ($data["render"] == "ConfirmOrderView" || $data["render"] = "AllCustomerView")
+        <?php if ($data["render"] == "ConfirmOrderView" || $data["render"] == "AllCustomerView" || $data["render"] == "Analyze")
             echo "Saler Page" ?>
     </div>
     <div class="content">
