@@ -50,7 +50,7 @@ DROP PROCEDURE IF EXISTS create_order;
         
     DELIMITER ;
     
-     DELIMITER $$
+	DELIMITER $$
     DROP PROCEDURE IF EXISTS delete_order;
     CREATE PROCEDURE delete_order (OrderID int)
     BEGIN
