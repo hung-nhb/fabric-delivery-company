@@ -462,7 +462,3 @@ INSERT INTO Address
 VALUES ('600003', 'Q11, TP.HCM');
 INSERT INTO Address
 VALUES ('600004', 'Dong Nai');
-
-
-
-

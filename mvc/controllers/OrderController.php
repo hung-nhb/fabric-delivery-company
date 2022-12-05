@@ -45,4 +45,21 @@ class OrderController extends Controller
         $this->data["render"] = "AllOrdersView";
         $this->view("Layout", $this->data);
     }
+    function confirmOrder()
+    {
+        $this->data["id"] = "";
+        if (isset($_GET["id"])) {
+            $this->data["id"] = $_GET["id"];
+        }
+        $this->data["orderList"] = $this->model->get_all_orders($this->data["id"]);
+        $this->data["render"] = "ConfirmOrderView";
+        $this->view("SalerLayout", $this->data);
+    }
+    function AllCustomer()
+    {
+        $this->data["customerList"] = $this->model->getAllCustomer();
+        $this->data["render"] = "AllCustomerView";
+        $this->view("SalerLayout", $this->data);
+    }
+
 }
