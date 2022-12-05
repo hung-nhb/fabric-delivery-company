@@ -15,10 +15,10 @@ $DOMAIN = 'http://localhost:3000';
 <body>
     <div class="header">
         <?php if ($data["render"] == "CreateOrderView" || $data["render"] == "AllOrdersView")
-            echo "Customer Page"?>
+            echo "Customer Page" ?>
     </div>
     <div class="content">
-        <div class="navbar">
+        <div class="navbar__custom">
             <div class="btn from-left" onclick="location.pathname='/OrderController/CreateOrder/'">Create New Order
             </div>
             <div class="btn from-left" onclick="location.pathname='/OrderController/AllOrders/'">All Orders</div>
