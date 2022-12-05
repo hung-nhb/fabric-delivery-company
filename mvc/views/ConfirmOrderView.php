@@ -1,6 +1,7 @@
 <table class="table table-bordered table-striped table-hover" border="1">
   <tr style="align-items:center; text-align: center;">
     <th width="100">OrderID</th>
+    <th width="100">SalerID</th>
     <th width="100">CustomerID</th>
     <th width="100">First and Middle Name</th>
     <th width="100">Name</th>
@@ -16,6 +17,9 @@
   <tr>
     <td align="center">
       <?php echo $value["OrderID"] ?>
+    </td>
+    <td align="center">
+      <?php echo $value["SalerID"] ?>
     </td>
     <td align="center">
       <?php echo $value["CustomerID"] ?>
@@ -42,7 +46,7 @@
       <?php echo $value["Note"] ?>
     </td>
     <td align="center">
-      <?php echo $value["isAvailable"] ?>
+      <?php echo $value["isAccepted"] ?>
     </td>
   </tr>
   <?php }

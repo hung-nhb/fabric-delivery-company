@@ -18,12 +18,14 @@ class OrderModel extends Database
         $sql = "INSERT INTO Make_Order VALUES ('$oid', (SELECT SID FROM Saler ORDER BY RAND() LIMIT 1), '$id')";
         $this->query($sql);
     }
-    function get_all_orders()
+    function get_all_orders($id)
     {
-        $sql = "SELECT `Order`.OID as OrderID, `Customer`.CID as CustomerID, `First and Middle Name`,`Name`, Debt, Debt_limit as maxDebt, `Status` as _status, `Date` as _date, Note, confirmOrder(`Order`.OID) as isAvailable 
-        FROM (`Order` JOIN Make_Order ON `Order`.OID = Make_Order.OID) 
-        JOIN Customer ON Make_Order.CID = Customer.CID
-        JOIN `User` ON Customer.CID = `User`.UID";
+        $sql = "SELECT DISTINCT `Make_Order`.OID as OrderID,`Make_Order`.SID as SalerID,`Make_Order`.CID as CustomerID, `First and Middle Name`, `Name`, Customer.Debt, Customer_Type.`Debt_limit` as maxDebt, `Status` as _status, `Date` as _date, `Note`, confirmOrder(`Make_Order`.OID) as isAccepted 
+        FROM 
+        (((`Make_Order` JOIN `Order` ON `Make_Order`.OID = `Order`.OID) JOIN Customer ON `Make_Order`.CID = `Customer`.CID) JOIN `User` ON  `Customer`.CID = `User`.UID) JOIN Customer_Type
+        ON  Customer.`Type` = Customer_Type.`Type`
+        WHERE SID = '$id' 
+        AND `Status` = 'Waiting'";
         $data = $this->get_list($sql);
         return $data;
     }
@@ -51,5 +53,12 @@ class OrderModel extends Database
         $sql = "SELECT calculateOrderPrice('$order_id') as Order_Price";
         $data = $this->get_one($sql);
         return $data["Order_Price"];
+    }
+    function getAllCustomer()
+    {
+        $sql = "SELECT CID, `First and Middle Name`, `Name`, Debt, Debt_limit, `Type` as _type, Phone, `Address`, countTotalOrder(Customer.CID) AS totalOrder FROM
+        Customer JOIN `User` ON Customer.CID = `User`.UID ORDER BY countTotalOrder(Customer.CID) DESC";
+        $data = $this->get_list($sql);
+        return $data;
     }
 }
