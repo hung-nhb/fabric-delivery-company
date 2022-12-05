@@ -1,4 +1,4 @@
-<form action="/SalerController/Analyze/">
+<form action="/OrderController/Analyze/">
     Date: <input type="text" name="date">
     Product ID: <input type="text" name="pid">
     <input type="submit">
@@ -19,11 +19,12 @@
     <?php if ($data["analysis"]) {
         foreach ($data["analysis"] as $key => $value) { ?>
     <tr>
+
         <td align="center"><?php echo $value["Name"] ?></td>
         <td align="center"><?php echo $value["Type"] ?></td>
         <td align="center"><?php echo $value["Color"] ?></td>
-        <td align="center"><?php echo $value["SUM(Quantity)"] ?></td>
-        <td align="center"><?php echo $value["SUM(Meters)"] ?></td>
+        <td align="center"><?php echo $value["TotalQuantity"] ?></td>
+        <td align="center"><?php echo $value["TotalMeters"] ?></td>
     </tr>
     <?php }
     } ?>

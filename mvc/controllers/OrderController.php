@@ -55,6 +55,14 @@ class OrderController extends Controller
         $this->data["render"] = "ViewOrder";
         $this->view("Layout", $this->data);
     }
-
-    
+    function Analyze()
+    {
+        $this->data["analysis"] = [];
+        if (isset($_GET["date"]) && isset($_GET["pid"])) {
+            $this->data["analysis"] = $this->model->get_total($_GET["date"], $_GET["pid"]);
+            
+        }
+        $this->data["render"] = "Analyze";
+        $this->view("SalerLayout", $this->data);
+    }
 }

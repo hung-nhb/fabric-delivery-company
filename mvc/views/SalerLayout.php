@@ -19,7 +19,7 @@ $DOMAIN = 'http://localhost:3000';
     </div>
     <div class="content">
         <div class="navbar">
-            <div class="btn from-left" onclick="location.pathname='/SalerController/Analyze/'">Analyze
+            <div class="btn from-left" onclick="location.pathname='/OrderController/Analyze/'">Analyze
             </div>
         </div>
         <div class="view">
