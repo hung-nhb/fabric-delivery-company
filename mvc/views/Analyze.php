@@ -3,13 +3,13 @@
     Product ID: <input type="text" name="pid">
     <input type="submit">
 </form>
-<table border="1">
-    <caption class="caption-view-order">
-        Product ID
-        <?php if (isset($_GET["pid"])) echo $_GET["pid"];
+<h2 style="display:flex; align-items: center; padding: 20px 0; text-align: center; justify-content:center;">Product ID
+    <?php if (isset($_GET["pid"])) echo $_GET["pid"];
         ?> in date <?php if (isset($_GET["date"])) echo $_GET["date"];?>
-    </caption>
-    <tr>
+</h2>
+<table class="table table-bordered table-striped table-hover" border="1">
+
+    <tr style="align-items:center; text-align: center;">
         <th width="100">Product Name</th>
         <th width="100">Product Type</th>
         <th width="100">Product Color</th>
