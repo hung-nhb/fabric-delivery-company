@@ -2,61 +2,52 @@
 <div class="product-list">
     <?php if ($data["productList"]) {
         foreach ($data["productList"] as $key => $value) { ?>
-    <div class="product-item">
-        <div class="product-info">
-            <div>
-                <img src="/images/plain-coton.jpg" alt="img" class="product-image" />
-            </div>
-            <div>
-                <span class="product-title">Name: </span>
-                <?php echo $value["Name"] ?><br />
-                <span class="product-title">Type: </span>
-                <?php echo $value["Type"] ?><br />
-                <span class="product-title">Color: </span>
-                <?php echo $value["Color"] ?><br />
-                <span class="product-title">Detail: </span>
-                <?php echo $value["Detail"] ?><br />
-                <span class="product-title">Supplier: </span>
-                <?php echo $value["Supplier"] ?> <br />
-            </div>
-        </div>
-        <div class="product-number-title">
-            <div>Quantity</div>
-            <div>Meters</div>
-        </div>
-        <form action="?abc&">
-            <div class="product-number">
-                <div>
-                    <button class="btn btn-danger"
-                        onclick="decreaseValue('<?php echo $value["PID"] . "-quantity" ?>')">-</button>
-                    <input type="number" class="product-quantity" id=<?php echo $value["PID"] . "-quantity" ?> value=
-                    <?php echo $data["order"][$value["PID"] . "-quantity"] ?> name=
-                    <?php echo $value["PID"] . "-quantity" ?> />
-                    <button class="btn btn-success"
-                        onclick="increaseValue('<?php echo $value["PID"] . "-quantity" ?>', '<?php echo $value["Inventory_on_hand"] ?>', 'quantity')">+</button>
+            <div class="product-item">
+                <div class="product-info">
+                    <div>
+                        <img src=<?php echo '/images/' . $value["Image"] . '.jpg' ?> alt="img" class="product-image" />
+                    </div>
+                    <div>
+                        <span class="product-title">Name: </span>
+                        <?php echo $value["Name"] ?><br />
+                        <span class="product-title">Type: </span>
+                        <?php echo $value["Type"] ?><br />
+                        <span class="product-title">Color: </span>
+                        <?php echo $value["Color"] ?><br />
+                        <span class="product-title">Detail: </span>
+                        <?php echo $value["Detail"] ?><br />
+                        <span class="product-title">Supplier: </span>
+                        <?php echo $value["Supplier"] ?> <br />
+                    </div>
                 </div>
-                <div>
-                    <button class="btn btn-danger"
-                        onclick="decreaseValue('<?php echo $value["PID"] . "-meters" ?>')">-</button>
-                    <input type="number" class="product-quantity" id=<?php echo $value["PID"] . "-meters" ?> value=
-                    <?php echo $data["order"][$value["PID"] . "-meters"] ?> name=
-                    <?php echo $value["PID"] . "-meters" ?> />
-                    <button class="btn btn-success"
-                        onclick="increaseValue('<?php echo $value["PID"] . "-meters" ?>', '<?php echo $value["Inventory_on_hand"] ?>', 'meters')">+</button>
+                <div class="product-number-title">
+                    <div>Quantity</div>
+                    <div>Meters</div>
                 </div>
+                <form action="?abc&">
+                    <div class="product-number">
+                        <div>
+                            <button class="btn btn-danger" onclick="decreaseValue('<?php echo $value["PID"] . "-quantity" ?>')">-</button>
+                            <input type="number" class="product-quantity" id=<?php echo $value["PID"] . "-quantity" ?> value=<?php echo $data["order"][$value["PID"] . "-quantity"] ?> name=<?php echo $value["PID"] . "-quantity" ?> />
+                            <button class="btn btn-success" onclick="increaseValue('<?php echo $value["PID"] . "-quantity" ?>', '<?php echo $value["Inventory_on_hand"] ?>', 'quantity')">+</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-danger" onclick="decreaseValue('<?php echo $value["PID"] . "-meters" ?>')">-</button>
+                            <input type="number" class="product-quantity" id=<?php echo $value["PID"] . "-meters" ?> value=<?php echo $data["order"][$value["PID"] . "-meters"] ?> name=<?php echo $value["PID"] . "-meters" ?> />
+                            <button class="btn btn-success" onclick="increaseValue('<?php echo $value["PID"] . "-meters" ?>', '<?php echo $value["Inventory_on_hand"] ?>', 'meters')">+</button>
+                        </div>
+                    </div>
+                    <div class="product-available" style="padding: 10px 0; color: red;">
+                        Available:
+                        <?php echo $value["Inventory_on_hand"] ?> meters
+                    </div>
             </div>
-            <div class="product-available" style="padding: 10px 0; color: red;">
-                Available:
-                <?php echo $value["Inventory_on_hand"] ?> meters
-            </div>
-    </div>
     <?php }
     } ?>
 </div>
 <input style="display: none;" name="id" value=<?php echo $data["id"] ?> />
 <div style="display: flex; justify-content: center;">
-    <button class="button-create-order btn btn-primary" type="submit" name="submit" value="OK"
-        style="padding: 5px 0;">Create</button>
+    <button class="button-create-order btn btn-primary" type="submit" name="submit" value="OK" style="padding: 5px 0;">Create</button>
 </div>
 </form>
 
