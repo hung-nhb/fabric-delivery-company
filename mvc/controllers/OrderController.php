@@ -27,7 +27,7 @@ class OrderController extends Controller
         }
 
         if (isset($_GET["submit"])) {
-            $this->model->create_order($this->data["id"], $this->data["order"]);
+            $this->model->create_order($this->data["id"]);
             header("Location: http://localhost:3000/OrderController/AllOrders/?id=" . $_GET["id"]);
         }
         $this->data["render"] = "CreateOrderView";
@@ -77,6 +77,21 @@ class OrderController extends Controller
             $this->data["id"] = $_GET["id"];
         }
         $this->data["orderList"] = $this->model->get_all_orders($this->data["id"]);
+        if (isset($_GET["submit"]) && $_GET["submit"] == "accept") {
+            $this->data["OrderID"] = "";
+            if (isset($_GET["oid"])) {
+                $this->data["OrderID"] = $_GET["oid"];
+            }
+            $this->model->updateOrderById($this->data["OrderID"], 'Processing', 'Confirm Order');
+            header("Location: http://localhost:3000/OrderController/ConfirmOrder/?id=" . $_GET["id"]);
+        } else if (isset($_GET["submit"]) && $_GET["submit"] == "reject") {
+            $this->data["OrderID"] = "";
+            if (isset($_GET["oid"])) {
+                $this->data["OrderID"] = $_GET["oid"];
+            }
+            $this->model->updateOrderById($this->data["OrderID"], 'Canceled', 'Reject Order');
+            header("Location: http://localhost:3000/OrderController/ConfirmOrder/?id=" . $_GET["id"]);
+        }
         $this->data["render"] = "ConfirmOrderView";
         $this->view("SalerLayout", $this->data);
     }
