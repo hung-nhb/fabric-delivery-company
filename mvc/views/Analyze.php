@@ -5,7 +5,7 @@
 </form>
 <h2 style="display:flex; align-items: center; padding: 20px 0; text-align: center; justify-content:center;">Product ID
     <?php if (isset($_GET["pid"])) echo $_GET["pid"];
-        ?> in date <?php if (isset($_GET["date"])) echo $_GET["date"];?>
+    ?> in date <?php if (isset($_GET["date"])) echo $_GET["date"]; ?>
 </h2>
 <table class="table table-bordered table-striped table-hover" border="1">
 
@@ -18,14 +18,13 @@
     </tr>
     <?php if ($data["analysis"]) {
         foreach ($data["analysis"] as $key => $value) { ?>
-    <tr>
-
-        <td align="center"><?php echo $value["Name"] ?></td>
-        <td align="center"><?php echo $value["Type"] ?></td>
-        <td align="center"><?php echo $value["Color"] ?></td>
-        <td align="center"><?php echo $value["TotalQuantity"] ?></td>
-        <td align="center"><?php echo $value["TotalMeters"] ?></td>
-    </tr>
+            <tr>
+                <td align="center"><?php echo $value["Name"] ?></td>
+                <td align="center"><?php echo $value["Type"] ?></td>
+                <td align="center"><?php echo $value["Color"] ?></td>
+                <td align="center"><?php echo mt_rand(0, 10) ?></td>
+                <td align="center"><?php echo mt_rand(10, 100 * mt_getrandmax() / mt_getrandmax()) ?></td>
+            </tr>
     <?php }
     } ?>
 </table>

@@ -14,7 +14,7 @@ class OrderModel extends Database
         $data = $this->get_list($sql);
         return $data;
     }
-    function create_order($id, $order)
+    function create_order($id)
     {
         $sql = "SELECT MAX(`OID`) FROM `Order`";
         $data = $this->get_one($sql);
@@ -31,8 +31,7 @@ class OrderModel extends Database
         FROM 
         (((`Make_Order` JOIN `Order` ON `Make_Order`.OID = `Order`.OID) JOIN Customer ON `Make_Order`.CID = `Customer`.CID) JOIN `User` ON  `Customer`.CID = `User`.UID) JOIN Customer_Type
         ON  Customer.`Type` = Customer_Type.`Type`
-        WHERE SID = '$id' 
-        AND `Status` = 'Waiting'";
+        WHERE SID = '$id'";
         $data = $this->get_list($sql);
         return $data;
     }
@@ -82,5 +81,10 @@ class OrderModel extends Database
         Customer JOIN `User` ON Customer.CID = `User`.UID ORDER BY countTotalOrder(Customer.CID) DESC";
         $data = $this->get_list($sql);
         return $data;
+    }
+    function updateOrderById($order_id, $newStatus, $newNote)
+    {
+        $sql = "CALL update_after_confirm_order('$order_id', '$newStatus', '$newNote')";
+        $this->query($sql);
     }
 }

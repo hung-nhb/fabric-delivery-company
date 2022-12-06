@@ -6,7 +6,7 @@
 <table class="table table-bordered table-striped table-hover" border="1">
     <caption class="caption-view-order">
         Detail of Order
-        <?php if (isset($_GET["id"])) echo $_GET["id"];
+        <?php if (isset($_GET["id"])) echo $_GET["oid"];
         ?>
     </caption>
     <tr style="align-items:center; text-align: center;">
