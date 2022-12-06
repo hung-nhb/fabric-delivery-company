@@ -1,3 +1,4 @@
+use fabric_delivery_company;
 DELIMITER $$
 DROP FUNCTION IF EXISTS calculateOrderPrice;
 

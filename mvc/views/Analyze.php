@@ -18,13 +18,13 @@
     </tr>
     <?php if ($data["analysis"]) {
         foreach ($data["analysis"] as $key => $value) { ?>
-            <tr>
-                <td align="center"><?php echo $value["Name"] ?></td>
-                <td align="center"><?php echo $value["Type"] ?></td>
-                <td align="center"><?php echo $value["Color"] ?></td>
-                <td align="center"><?php echo mt_rand(0, 10) ?></td>
-                <td align="center"><?php echo mt_rand(10, 100 * mt_getrandmax() / mt_getrandmax()) ?></td>
-            </tr>
+    <tr>
+        <td align="center"><?php echo $value["Name"] ?></td>
+        <td align="center"><?php echo $value["Type"] ?></td>
+        <td align="center"><?php echo $value["Color"] ?></td>
+        <td align="center"><?php echo $value["TotalQuantity"] ?></td>
+        <td align="center"><?php echo $value["TotalMeters"] ?></td>
+    </tr>
     <?php }
     } ?>
 </table>
