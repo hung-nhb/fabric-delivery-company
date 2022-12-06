@@ -142,7 +142,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-
 DROP TRIGGER IF EXISTS after_insert_sale;
 DELIMITER $$
 CREATE TRIGGER after_insert_sale AFTER INSERT ON Sale
@@ -160,11 +159,11 @@ BEGIN
     
 	SET @price = calculateOrderPrice(NEW.OID);	
 	SET @CustomerID = (SELECT CID
-					  FROM Make_order
+					  FROM `Make_Order`
                       WHERE OID = NEW.OID);
 	-- Update Debt
     UPDATE Customer
-    SET Debt = Debt + @price * (1 + (SELECT VAT FROM Sales_time WHERE StID = NEW.StID))
+    SET Debt = Debt + @price * (1 + (SELECT VAT FROM Sales_Time WHERE StID = NEW.StID))
     WHERE CID = @CustomerID;
 
     -- Update inventory_on_hand
@@ -187,5 +186,28 @@ BEGIN
     UPDATE `Order`
     SET `Status` = 'Processing'
     WHERE OID = NEW.OID;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS update_after_confirm_order;
+CREATE PROCEDURE update_after_confirm_order (OrderID char(6), newStatus varchar(30), newNote varchar(50))
+BEGIN
+	IF NOT EXISTS (SELECT * FROM `Order` WHERE `Order`.OID = OrderID) THEN
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Not found order with this order id.';
+	END IF;
+	IF (newStatus = 'Processing') THEN
+		-- UPDATE SALES_TIME
+		INSERT INTO Sales_Time (Price, Sale_date)
+		VALUES (calculateOrderPrice(OrderID), current_date());
+		-- UPDATE SALE
+        SET @SalerID = (SELECT SID FROM `Make_Order` WHERE `Make_Order`.OID = OrderID);
+		INSERT INTO Sale (StID, OID, SID)
+		VALUES (LAST_INSERT_ID(), OrderID, @SalerID);
+	END IF;
+		-- UPDATE ORDER
+		UPDATE `Order`
+		SET `Status` = newStatus, Note = newNote
+		WHERE `Order`.OID = OrderID;
 END $$
 DELIMITER ;
