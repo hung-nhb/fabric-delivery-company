@@ -1,5 +1,5 @@
 <form action="/OrderController/Analyze/">
-    Date: <input type="text" name="date">
+    Date: <input type="date" name="date">
     Product ID: <input type="text" name="pid">
     <input type="submit">
 </form>
@@ -22,8 +22,8 @@
                 <td align="center"><?php echo $value["Name"] ?></td>
                 <td align="center"><?php echo $value["Type"] ?></td>
                 <td align="center"><?php echo $value["Color"] ?></td>
-                <td align="center"><?php echo mt_rand(0, 10) ?></td>
-                <td align="center"><?php echo mt_rand(10, 100 * mt_getrandmax() / mt_getrandmax()) ?></td>
+                <td align="center"><?php echo $value["TotalQuantity"] ?></td>
+                <td align="center"><?php echo $value["TotalMeters"] ?></td>
             </tr>
     <?php }
     } ?>
