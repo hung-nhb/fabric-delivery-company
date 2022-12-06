@@ -5,7 +5,7 @@
     <div class="product-item">
         <div class="product-info">
             <div>
-                <img src="/images/plain-coton.jpg" alt="img" class="product-image" />
+                <img src=<?php echo '/images/' . $value["Image"] . '.jpg' ?> alt="img" class="product-image" />
             </div>
             <div>
                 <span class="product-title">Name: </span>

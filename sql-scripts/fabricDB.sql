@@ -98,7 +98,7 @@ CREATE TABLE Product(
     `Name` varchar(30),
     `Type` varchar(20),
     `Color` varchar(10),
-    Image LONGBLOB,
+    Image varchar(30),
     Detail varchar(50),
     Supplier varchar(30),
     Inventory_on_hand int CHECK(Inventory_on_hand > 0),
@@ -300,4 +300,3 @@ CREATE TABLE Address(
     FOREIGN KEY(DtID)references Delivery_Trip(DtID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-

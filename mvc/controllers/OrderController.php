@@ -45,6 +45,27 @@ class OrderController extends Controller
         $this->data["render"] = "AllOrdersView";
         $this->view("Layout", $this->data);
     }
+
+    function ViewOrder()
+    {
+        $this->data["productList"] = [];
+        if (isset($_GET["id"])) {
+            $this->data["productList"] = $this->model->get_products_of_order($_GET["id"]);
+        }
+        $this->data["render"] = "ViewOrder";
+        $this->view("Layout", $this->data);
+    }
+
+    function Analyze()
+    {
+        $this->data["analysis"] = [];
+        if (isset($_GET["date"]) && isset($_GET["pid"])) {
+            $this->data["analysis"] = $this->model->get_total($_GET["date"], $_GET["pid"]);
+        }
+        $this->data["render"] = "Analyze";
+        $this->view("SalerLayout", $this->data);
+    }
+
     function confirmOrder()
     {
         $this->data["id"] = "";
@@ -52,8 +73,22 @@ class OrderController extends Controller
             $this->data["id"] = $_GET["id"];
         }
         $this->data["orderList"] = $this->model->get_all_orders($this->data["id"]);
+        if ($_GET["submit"] == "accept") {
+            $this->data["OrderID"] = "";
+            if (isset($_GET["oid"])) {
+                $this->data["OrderID"] = $_GET["oid"];
+            }
+            $this->model->updateOrderById($this->data["OrderID"], 'Processing', 'Confirm Order');
+        } else if ($_GET["submit"] == "reject") {
+            $this->data["OrderID"] = "";
+            if (isset($_GET["oid"])) {
+                $this->data["OrderID"] = $_GET["oid"];
+            }
+            $this->model->updateOrderById($this->data["OrderID"], 'Canceled', 'Reject Order');
+        }
         $this->data["render"] = "ConfirmOrderView";
         $this->view("SalerLayout", $this->data);
+        header("Location: http://localhost:3000/OrderController/ConfirmOrder/?id=" . $_GET["id"]);
     }
     function AllCustomer()
     {
