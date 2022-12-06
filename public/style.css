@@ -132,6 +132,12 @@ code {
     grid-gap: 1rem;
 }
 
+.order-view:hover {
+    text-decoration: underline;
+    color: blue;
+    transition-delay: .1s;
+}
+
 .product-image {
     width: 5rem;
     border-radius: 1rem;

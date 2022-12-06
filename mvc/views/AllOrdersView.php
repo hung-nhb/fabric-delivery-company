@@ -11,23 +11,26 @@
     </tr>
     <?php if ($data["orderList"]) {
         foreach ($data["orderList"] as $key => $value) { ?>
-    <tr>
-        <td align="center">
-            <?php echo $value["OID"] ?>
-        </td>
-        <td align="center">
-            <?php echo $value["First and Middle Name"] . " " . $value["Name"] ?>
-        </td>
-        <td align="center">
-            <?php echo $value["Date"] ?>
-        </td>
-        <td align="center">
-            <?php echo $value["Status"] ?>
-        </td>
-        <td>
-            <?php echo $value["Note"] ?>
-        </td>
-    </tr>
+            <tr>
+                <td align="center">
+                    <form action="/OrderController/ViewOrder/">
+                        <input style="display: none;" name="id" value=<?php echo $data["id"] ?> />
+                        <button name="oid" value=<?php echo $value["OID"] ?>><?php echo $value["OID"] ?></button>
+                    </form>
+                </td>
+                <td align="center">
+                    <?php echo $value["First and Middle Name"] . " " . $value["Name"] ?>
+                </td>
+                <td align="center">
+                    <?php echo $value["Date"] ?>
+                </td>
+                <td align="center">
+                    <?php echo $value["Status"] ?>
+                </td>
+                <td>
+                    <?php echo $value["Note"] ?>
+                </td>
+            </tr>
     <?php }
     } ?>
 </table>

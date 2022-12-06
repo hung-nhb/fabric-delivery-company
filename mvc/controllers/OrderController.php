@@ -36,9 +36,11 @@ class OrderController extends Controller
 
     function AllOrders()
     {
+        $this->data["id"] = "";
         $this->data["orderList"] = [];
         $this->data["fullName"] = "";
         if (isset($_GET["id"])) {
+            $this->data["id"] = $_GET["id"];
             $this->data["orderList"] = $this->model->get_orders_by_user($_GET["id"]);
             $this->data["fullName"] = $this->model->get_user($_GET["id"]);
         }
@@ -48,9 +50,11 @@ class OrderController extends Controller
 
     function ViewOrder()
     {
+        $this->data["id"] = "";
         $this->data["productList"] = [];
-        if (isset($_GET["id"])) {
-            $this->data["productList"] = $this->model->get_products_of_order($_GET["id"]);
+        if (isset($_GET["oid"])) {
+            $this->data["id"] = $_GET["id"];
+            $this->data["productList"] = $this->model->get_products_of_order($_GET["oid"]);
         }
         $this->data["render"] = "ViewOrder";
         $this->view("Layout", $this->data);

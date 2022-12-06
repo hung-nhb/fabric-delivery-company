@@ -24,7 +24,7 @@
                     <div>Quantity</div>
                     <div>Meters</div>
                 </div>
-                <form action="?abc&">
+                <form>
                     <div class="product-number">
                         <div>
                             <button class="btn btn-danger" onclick="decreaseValue('<?php echo $value["PID"] . "-quantity" ?>')">-</button>
